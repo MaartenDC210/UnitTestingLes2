@@ -9,43 +9,43 @@ public class LikeItSimpleTest {
 
     @Test
     public void noOne() {
-        String result = likeIt.display(new String[]{});
+        String result = likeIt.displayLikes(new String[]{});
         assertEquals("no one likes this :-(", result);
     }
 
     @Test
     public void onePerson() {
-        String result = likeIt.display(new String[]{"Jos"});
+        String result = likeIt.displayLikes(new String[]{"Jos"});
         assertEquals("Jos likes this", result);
     }
 
     @Test
     public void twoPersons() {
-        String result = likeIt.display(new String[]{"Bieke", "Christel"});
+        String result = likeIt.displayLikes(new String[]{"Bieke", "Christel"});
         assertEquals("Bieke and Christel like this", result);
     }
 
     @Test
     public void threePersons() {
-        String result = likeIt.display(new String[]{"Marc", "Jef", "Koontal"});
+        String result = likeIt.displayLikes(new String[]{"Marc", "Jef", "Koontal"});
         assertEquals("Marc, Jef and Koontal like this", result);
     }
 
     @Test
     public void fourPersons() {
-        String result = likeIt.display(new String[]{"Lieve", "Tom", "Fouad", "Anna"});
+        String result = likeIt.displayLikes(new String[]{"Lieve", "Tom", "Fouad", "Anna"});
         assertEquals("Lieve, Tom and 2 others like this", result);
     }
 
     @Test
     public void moreThanFourPersons() {
-        String result = likeIt.display(new String[]{"Pia", "Rob", "Lola", "Karla", "Mohammed", "Rudi"});
+        String result = likeIt.displayLikes(new String[]{"Pia", "Rob", "Lola", "Karla", "Mohammed", "Rudi"});
         assertEquals("Pia, Rob and 4 others like this", result);
     }
 
     @Test
     public void namesNull() {
-        String result = likeIt.display(null);
+        String result = likeIt.displayLikes(null);
         assertEquals("", result);
     }
 

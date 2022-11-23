@@ -19,7 +19,6 @@ public class ArrayOfInts {
         for (int element : array) {
             if (element % 2 == 0)
                 sum += element;
-
         }
 
         return sum;
