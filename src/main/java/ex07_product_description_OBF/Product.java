@@ -37,84 +37,48 @@ public class Product {
         this.percentage = percentage;
     }
 
-    public String productDescription() {
-        double t = 1;
-        String temp = " • ";
-        int nrOfParts = 0;
-        if (size != null) t = size;
-        double v = 0;
-        if (percentage != null) v = percentage % 1;
+    public String getProductDescription() {
         if (size == null && percentage == null) return "";
+        String result = " • ";
         if (size != null) {
-            nrOfParts++;
-            temp += (int) t + "CL";
-            if (percentage != null) {
-                String format;
-                if (v > 0) {
-                    format = "%.1f%%";
-                } else {
-                    format = "%.0f%%";
-                }
-                if (size != null)
-                    temp += " ";
-                temp += String.format(Locale.ROOT, format, percentage);
-                nrOfParts += t;
-            } else {
-                if (size == null)
-                    for (int i = 0; i < nrOfParts; i++) {
-                        temp = "  ";
-                    }
-            }
-        } else {
-            if (percentage != null) {
-                if (size != null)
-                    temp += " ";
-                nrOfParts++;
-                int partBefore = (int) (double) (percentage);
-                int partAfter = (int) (10 * ((percentage+.05) % 1));
-                String format = "%d%";
-                temp += partBefore;
-                if (partAfter > 0) temp = temp + "." + partAfter;
-                temp = temp + "%";
-            } else {
-                temp = " • 0%";
-                nrOfParts--;
-                if (size == null)
-                    temp = " • ";
-            }
+            result += size + "CL";
         }
-        if (nrOfParts<0)
-            temp = "";
-        return temp;
+        if (percentage != null) {
+            String format = percentage % 1 == 0 ? "%.0f%%" : "%.1f%%";
+            if (size != null) result += " ";
+            //result += String.format(format, percentage);
+            result += String.format(Locale.ROOT, format, percentage);
+        }
+        return result;
     }
 
     public static void main(String[] args) {
         Product p1 = new Product("empty", null, null);
-        System.out.println(p1.productDescription());
+        System.out.println(p1.getProductDescription());
 
         Product p2 = new Product("empty", 25, null);
-        System.out.println(p2.productDescription());
+        System.out.println(p2.getProductDescription());
 
         Product p3 = new Product("empty", null, 8.0);
-        System.out.println(p3.productDescription());
+        System.out.println(p3.getProductDescription());
 
         Product p4 = new Product("empty", 33, 6.0);
-        System.out.println(p4.productDescription());
+        System.out.println(p4.getProductDescription());
 
         Product p5 = new Product("empty", 33, 6.3);
-        System.out.println(p5.productDescription());
+        System.out.println(p5.getProductDescription());
 
         Product p6 = new Product("empty", 33, 6.333);
-        System.out.println(p6.productDescription());
+        System.out.println(p6.getProductDescription());
 
         Locale originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.FRANCE);
 
         Product p7 = new Product("empty", 33, 6.3);
-        System.out.println(p7.productDescription());
+        System.out.println(p7.getProductDescription());
 
         Product p8 = new Product("empty", 33, 6.333);
-        System.out.println(p8.productDescription());
+        System.out.println(p8.getProductDescription());
 
         Locale.setDefault(originalLocale);
     }
